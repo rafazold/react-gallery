@@ -6,8 +6,7 @@ class App extends React.Component {
         super(props);
         this.state = {
             albums: [],
-            gallery: [],
-            albumId: ''
+            photos: []
         };
     }
 
@@ -22,8 +21,8 @@ class App extends React.Component {
     addGallery(e) {
         fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${e.target.value}`)
             .then(res => res.json())
-            .then(gallery => {
-               this.setState({gallery});
+            .then(photos => {
+               this.setState({photos});
             });
     }
 
@@ -40,8 +39,8 @@ class App extends React.Component {
                           </option>
                       })}
             </select>
-            <div className="gallery">
-                {this.state.gallery.map(item => {
+            <div className="photos">
+                {this.state.photos.map(item => {
                     return <img src={item.thumbnailUrl} alt="item" key={item.id}/>
                 })}
             </div>
